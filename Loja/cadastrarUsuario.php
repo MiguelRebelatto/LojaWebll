@@ -2,7 +2,7 @@
 
 $nome = $_REQUEST['name'];
 $email = $_REQUEST['email'];
-$senha = $_REQUEST['password'];
+$senha = password_hash($_REQUEST['password'],PASSWORD_DEFAULT);
 
 $con=mysqli_connect("localhost","root","","test");
 $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email','$senha')";
