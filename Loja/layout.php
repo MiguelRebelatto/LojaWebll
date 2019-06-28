@@ -56,7 +56,7 @@ if (@$_GET['logout']) {
             <a class="nav-link" href="contact.php">Fale Conosco</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="carrinho.php">Car</a>
+            <a class="nav-link" href="carrinho.php">Carrinho</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?logout=1">Sair</a>
