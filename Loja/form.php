@@ -32,7 +32,7 @@ function validar_email(){
         return false;
     }
     else{
-        event.returnValue=true;
+        return true;
     }
 }
 </script>
