@@ -23,6 +23,8 @@
                 </div>
 
                 <div class="col-md-4" style="display: inline-block;">
+                <button type="button" class="btn btn-success">Adicionar ao Carrinho</button>
+                <button type="button" class="btn btn-success"><a style="color: white; text-decoration: none" href="#">Comprar</a></button>
                     <?php echo "<h3>Valor: R$ ".$row['preco']."</h3>" ?>
                     <br>
                     <p>
