@@ -57,7 +57,7 @@
 
             echo 
             '<div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
+             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
@@ -65,7 +65,7 @@
                 </h4>
                 <h5>'. $row['preco']. '</h5>
                 <p class="card-text">'.$row['descricao'].'</p>
-                <button type="button" class="btn btn-primary">Adicionar ao Carrinho</button>
+                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao">Adicionar ao Carrinho</button>
               </div>
             </div>
           </div>';
@@ -86,7 +86,20 @@
 
   </div>
 <!-- /.container -->
+<script async type="application/javascript">
+    function adicionarCarrinho(productId){
+      //var produto = document.getElementById("pr1").previousElementSibling.innerHTML;
 
+   }
+    document.addEventListener('DOMContentLoaded', function(event) {
+    var botoes = document.getElementsByClassName("botao");
+    for (let index = 0; index < botoes.length; index++) {
+        botoes[index].addEventListener("click",adicionarCarrinho(botoes[index].getAttribute("id")));
+    }
+  })
+   
+    
+</script>
 <?php
   require_once("footer.php");
 ?>
