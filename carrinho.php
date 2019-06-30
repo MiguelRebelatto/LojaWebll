@@ -61,6 +61,23 @@
 					</tfoot>\
 				</table>');
 	}
+	function pegarProdutoCarrinho(){
+		var produtos = [];
+		//pega os ids dos produtos no local storage
+		for (var i = 0; i < localStorage.length; i++) {
+				produtos[i] = localStorage.getItem("item_"+i);
+		}
+		
+	}
+	function removerProdutoCarrinho(){
+
+	}
+	function alterarQntdProduto(){
+
+	}
+	function calcularValorTotal(){
+
+	}
 </script>
         <?php
          require_once("footer.php");

@@ -66,7 +66,7 @@
                 </h4>
                 <h5>'. $row['preco']. '</h5>
                 <p class="card-text">'.$row['descricao'].'</p>
-                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao"><a style="color: white; text-decoration: none" href="carrinho.php">Adicionar ao Carrinho</a></button>
+                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao"><a style="color: white; text-decoration: none" href="#">Adicionar ao Carrinho</a></button>
               </div>
             </div>
           </div>';
@@ -87,12 +87,26 @@
 
   </div>
 <!-- /.container -->
-<script type="application/javascript">
-    var qntdCarrinho = 0;        
+
+<script type="application/javascript">         
+    localStorage.Carrinho = [];
     function adicionarCarrinho(productId){
-        chave = "item_"+qntdCarrinho;
-        localStorage.setItem(chave, productId);
-        qntdCarrinho++;
+       
+        readTextFile("produtos.json", function(text){
+          var data = JSON.parse(text);
+          for (var i = 0; i< data.produtos.length; i++){
+            var produto = data.produtos[i];
+            //console.log(obj);
+            for(var key in produto){
+              var chave = key;
+              var valor = produto[key];
+              if (chave == "id" && valor == productId){
+                localStorage['produtoCarrinho_'+localStorage.length] = JSON.stringify(produto);
+                break;
+              }
+            }
+          }
+});
       }
     var botoes = document.getElementsByClassName("botao");
     for (let index = 0; index < botoes.length; index++) {
@@ -100,6 +114,19 @@
           adicionarCarrinho(botoes[index].getAttribute("id"))}
           );
     }  
+
+    function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
 </script>
 <?php
   require_once("footer.php");
