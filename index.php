@@ -93,11 +93,6 @@
         chave = "item_"+qntdCarrinho;
         localStorage.setItem(chave, productId);
         qntdCarrinho++;
-        /*xhr = new XMLHttpRequest();
-        var data = "produtos="+localStorage.getItem(chave);
-        xhr.open("POST", "http://localhost/LojaWebll/carrinho.php", true); 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
-        xhr.send(data);*/
       }
     var botoes = document.getElementsByClassName("botao");
     for (let index = 0; index < botoes.length; index++) {
