@@ -61,11 +61,11 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">' . $row['nome'] .'</a>
+                  <a href="produtoDetail.php?idProd=' . $row['id'] .'">' . $row['nome'] .'</a>
                 </h4>
                 <h5>'. $row['preco']. '</h5>
                 <p class="card-text">'.$row['descricao'].'</p>
-                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao">Adicionar ao Carrinho</button>
+                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao"><a style="color: white; text-decoration: none" href="carrinho.php">Adicionar ao Carrinho</a></button>
               </div>
             </div>
           </div>';
@@ -86,19 +86,19 @@
 
   </div>
 <!-- /.container -->
-<script async type="application/javascript">
+<script type="application/javascript">
+    var qntdCarrinho = 0;        
     function adicionarCarrinho(productId){
-      //var produto = document.getElementById("pr1").previousElementSibling.innerHTML;
-
-   }
-    document.addEventListener('DOMContentLoaded', function(event) {
+      chave = "item_"+qntdCarrinho;
+      localStorage.setItem(chave, productId);
+      qntdCarrinho++;
+    }
     var botoes = document.getElementsByClassName("botao");
     for (let index = 0; index < botoes.length; index++) {
-        botoes[index].addEventListener("click",adicionarCarrinho(botoes[index].getAttribute("id")));
-    }
-  })
-   
-    
+        botoes[index].addEventListener("click",function(){
+          adicionarCarrinho(botoes[index].getAttribute("id"))}
+          );
+    }  
 </script>
 <?php
   require_once("footer.php");
