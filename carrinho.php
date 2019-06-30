@@ -6,7 +6,8 @@
     </head>
     <body>
     <?php
-  require_once("layout.php");
+		require_once("layout.php");
+		print_r($_POST);
     ?>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <div style="height:100%" class="container">

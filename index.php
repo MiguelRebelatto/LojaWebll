@@ -58,7 +58,7 @@
             echo 
             '<div class="col-lg-4 col-md-6 mb-4">
              <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="produtoDetail.php?idProd=' . $row['id'] .'"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="produtoDetail.php?idProd=' . $row['id'] .'">' . $row['nome'] .'</a>
@@ -89,10 +89,15 @@
 <script type="application/javascript">
     var qntdCarrinho = 0;        
     function adicionarCarrinho(productId){
-      chave = "item_"+qntdCarrinho;
-      localStorage.setItem(chave, productId);
-      qntdCarrinho++;
-    }
+        chave = "item_"+qntdCarrinho;
+        localStorage.setItem(chave, productId);
+        qntdCarrinho++;
+        xhr = new XMLHttpRequest();
+        var data = "produtos="+localStorage.getItem(chave);
+        xhr.open("POST", "carrinho.php?produtos="+localStorage.getItem(chave), true); 
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
+        xhr.send(data);
+      }
     var botoes = document.getElementsByClassName("botao");
     for (let index = 0; index < botoes.length; index++) {
         botoes[index].addEventListener("click",function(){
