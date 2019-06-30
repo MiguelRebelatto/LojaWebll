@@ -66,7 +66,7 @@
                 </h4>
                 <h5>'. $row['preco']. '</h5>
                 <p class="card-text">'.$row['descricao'].'</p>
-                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao"><a style="color: white; text-decoration: none" href="#">Adicionar ao Carrinho</a></button>
+                <button id="'. $row['id'] .'" type="button" class="btn btn-primary botao"><a style="color: white; text-decoration: none" href="carrinho.php">Adicionar ao Carrinho</a></button>
               </div>
             </div>
           </div>';
@@ -88,15 +88,14 @@
   </div>
 <!-- /.container -->
 
-<script type="application/javascript">         
-    localStorage.Carrinho = [];
-    function adicionarCarrinho(productId){
-       
-        readTextFile("produtos.json", function(text){
+<script type="application/javascript">
+function inserirItemCarrinho(productId){
+  readTextFile("produtos.json", function(text){
           var data = JSON.parse(text);
           for (var i = 0; i< data.produtos.length; i++){
             var produto = data.produtos[i];
-            //console.log(obj);
+            produto['qntd'] = 1;
+            produto['subTotal'] = produto['preco'] * produto['qntd'];
             for(var key in produto){
               var chave = key;
               var valor = produto[key];
@@ -106,28 +105,49 @@
               }
             }
           }
-});
+        });
+}
+function adicionarCarrinho(productId){
+  //Se não tiver nada no carrinho, coloca direto.  
+  if(localStorage.length == 0){
+      inserirItemCarrinho(productId);
+  }
+  //Se já tiver um item no carrinho, verifica se já tem o mesmo item no carrinho,
+// se tiver, altera a quantidade e o valor
+  else{
+    for ( var i = 0; i< localStorage.length; i++){
+      itemCarrinho = JSON.parse(localStorage['produtoCarrinho_'+i]);
+      if (itemCarrinho['id'] == productId){
+        itemCarrinho['qntd'] = itemCarrinho['qntd'] + 1;
+        itemCarrinho['subTotal'] = itemCarrinho['preco'] * itemCarrinho['qntd'];
+        localStorage['produtoCarrinho_'+i] = JSON.stringify(itemCarrinho);
       }
-    var botoes = document.getElementsByClassName("botao");
-    for (let index = 0; index < botoes.length; index++) {
-        botoes[index].addEventListener("click",function(){
-          adicionarCarrinho(botoes[index].getAttribute("id"))}
-          );
-    }  
-
-    function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
+      else{
+        inserirItemCarrinho(ProductId);
+      }
     }
-    rawFile.send(null);
+  }
 }
 
-</script>
+var botoes = document.getElementsByClassName("botao");
+for (let index = 0; index < botoes.length; index++) {
+    botoes[index].addEventListener("click",function(){
+      adicionarCarrinho(botoes[index].getAttribute("id"))}
+      );
+}  
+//Lê o JSON produtos.json
+function readTextFile(file, callback) {
+var rawFile = new XMLHttpRequest();
+rawFile.overrideMimeType("application/json");
+rawFile.open("GET", file, true);
+rawFile.onreadystatechange = function() {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+        callback(rawFile.responseText);
+    }
+  }
+rawFile.send(null);
+}
+</script>  
 <?php
   require_once("footer.php");
 ?>
