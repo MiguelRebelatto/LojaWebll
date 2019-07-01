@@ -9,7 +9,6 @@ require_once('PHPMailer/SMTP.php');
  
 $mail = new PHPMailer();
 
-# Define os dados do servidor e tipo de conexão
 $mail->IsSMTP(); // Define que a mensagem será SMTP
 $mail->Host = "smtp.gmail.com"; # Endereço do servidor SMTP
 $mail->Port = 587; // Porta TCP para a conexão
@@ -18,20 +17,17 @@ $mail->Username = 'aemlojaweb@gmail.com'; # Usuário de e-mail
 $mail->Password = 'augustomiguel123'; // # Senha do usuário de e-mail
 $mail->SMTPSecure = 'tls';
 
-# Define os destinatário(s)
-$mail->AddAddress('miguelgr199@hotmail.com', 'Fulano da Silva'); 
+$mail->AddAddress($emailDestinatario, $nomeDestinario); 
 $mail->setFrom('aemlojaweb@gmail.com', 'aemlojaweb');
 $mail->isHTML(true);
-$mail->Subject = 'Assunto do E-Mail';
-$mail->Body = 'Corpo da Mensagem em <b>html</b>';
-# Envia o e-mail
+$mail->Subject = $assunto;
+$mail->Body = $body;
+
 $enviado = $mail->Send();
 
-# Limpa os destinatários e os anexos
 $mail->ClearAllRecipients();
 $mail->ClearAttachments();
 
-# Exibe uma mensagem de resultado (opcional)
 if ($enviado) {
  echo "E-mail enviado com sucesso!";
 } else {
