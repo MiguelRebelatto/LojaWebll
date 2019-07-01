@@ -90,49 +90,63 @@
 
 <script type="application/javascript">
 function inserirItemCarrinho(productId){
-  readTextFile("produtos.json", function(text){
+  if(localStorage.length == 0 ){
+  itens = [];
+    readTextFile("produtos.json", function(text){
           var data = JSON.parse(text);
           for (var i = 0; i< data.produtos.length; i++){
             var produto = data.produtos[i];
-            produto['qntd'] = 1;
-            produto['subTotal'] = produto['preco'] * produto['qntd'];
             for(var key in produto){
               var chave = key;
               var valor = produto[key];
               if (chave == "id" && valor == productId){
-                localStorage['produtoCarrinho_'+localStorage.length] = JSON.stringify(produto);
+                produto['qntd'] = 1;
+                produto['subTotal'] = produto['preco'] * produto['qntd'];
+                itens[0] = produto;
+                localStorage['Itens'] = JSON.stringify(itens);
                 break;
               }
             }
           }
-        });
-}
-function adicionarCarrinho(productId){
-  //Se não tiver nada no carrinho, coloca direto.  
-  if(localStorage.length == 0){
-      inserirItemCarrinho(productId);
+    });
   }
-  //Se já tiver um item no carrinho, verifica se já tem o mesmo item no carrinho,
-// se tiver, altera a quantidade e o valor
   else{
-    for ( var i = 0; i< localStorage.length; i++){
-      itemCarrinho = JSON.parse(localStorage['produtoCarrinho_'+i]);
+    itensCarrinho = JSON.parse(localStorage['Itens']);
+    for ( var i = 0; i< itensCarrinho.length; i++){
+      itemCarrinho = itensCarrinho[i];
       if (itemCarrinho['id'] == productId){
         itemCarrinho['qntd'] = itemCarrinho['qntd'] + 1;
         itemCarrinho['subTotal'] = itemCarrinho['preco'] * itemCarrinho['qntd'];
-        localStorage['produtoCarrinho_'+i] = JSON.stringify(itemCarrinho);
-      }
-      else{
-        inserirItemCarrinho(ProductId);
+        itensCarrinho[i] = itemCarrinho;
+        localStorage['Itens'] = JSON.stringify(itensCarrinho);
+        return;
       }
     }
+    itensDentroCarrinho = JSON.parse(localStorage['Itens']);
+    readTextFile("produtos.json", function(text){
+          var data = JSON.parse(text);
+          for (var i = 0; i< data.produtos.length; i++){
+            var produto = data.produtos[i];
+            for(var key in produto){
+              var chave = key;
+              var valor = produto[key];
+              if (chave == "id" && valor == productId){
+                produto['qntd'] = 1;
+                produto['subTotal'] = produto['preco'] * produto['qntd'];
+                itensDentroCarrinho[itensDentroCarrinho.length] = produto;
+                localStorage['Itens'] = JSON.stringify(itensDentroCarrinho);
+                break;
+              }
+            }
+          }
+    });    
   }
 }
 
 var botoes = document.getElementsByClassName("botao");
 for (let index = 0; index < botoes.length; index++) {
     botoes[index].addEventListener("click",function(){
-      adicionarCarrinho(botoes[index].getAttribute("id"))}
+      inserirItemCarrinho(botoes[index].getAttribute("id"))}
       );
 }  
 //Lê o JSON produtos.json
