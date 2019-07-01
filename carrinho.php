@@ -91,15 +91,12 @@
 					if(itens.length == 1){
 						localStorage.removeItem('Itens');
 						this.parentElement.parentElement.parentElement.parentElement.remove();
-						console.log("entrou no apagar tabela");
 						break;
 					}else{
 						itens.splice(i,1);
-						console.log(itens);
 						localStorage['Itens'] = JSON.stringify(itens);
 						this.parentElement.parentElement.remove();
 						calcularValorTotal();
-						console.log("entrou no splice");
 						break;
 					}
 				}	 

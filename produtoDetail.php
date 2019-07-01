@@ -2,7 +2,7 @@
   require_once("layout.php");
   require_once("MySQL.class.php");
 
-  $bd = new MySQL('localhost', 'root', '', 'bdlogin');
+  $bd = new MySQL('localhost', 'root', '', 'test');
 
   $idProd = $_GET['idProd'];
     echo $idProd;
@@ -35,6 +35,8 @@
         </div>
     </div>
 </div>
+<script type="application/javascript" src="carrinho.js"></script>  
+
 <?php
   require_once("footer.php");
 ?>

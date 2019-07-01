@@ -1,4 +1,5 @@
-<?php 
+<?php
+//Cria o JSON produtos.json para ser utilizado no gerenciamento de produtos do carrinho 
 $con=mysqli_connect("localhost","root","","test");
 $response = array();
 $produtos = array();
