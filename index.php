@@ -1,6 +1,16 @@
 <?php
   require_once("layout.php");
   require_once("produtos.php");
+
+  $con=mysqli_connect("localhost","root","","test");
+  $categoria = @$_GET['categoria'];
+  if ($categoria > 0){
+    $sql = "SELECT * FROM produtos where categorias = $categoria";
+  }else{
+    $sql = "SELECT * FROM produtos";
+  }
+  $resultProdutos = mysqli_query($con, $sql);
+  
 ?>
 <!-- Page Content -->
   <div class="container">
@@ -11,9 +21,10 @@
 
         <h1 class="my-4">LoXinha</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+        <a href="index.php?categoria=0" class="list-group-item">Todas Categorias</a>
+        <?php
+          require_once("listaCategorias.php");
+        ?> 
         </div>
 
       </div>
@@ -50,10 +61,7 @@
         <div class="row">
         <!-- Esse trexo pega os produtos no banco e lista eles na página -->
         <?php 
-            $con=mysqli_connect("localhost","root","","test");
-
-            $result = mysqli_query($con,"SELECT * FROM produtos");
-            while($row = mysqli_fetch_array($result))
+            while($row = mysqli_fetch_array($resultProdutos))
             {
 
             echo 
