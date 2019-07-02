@@ -12,6 +12,6 @@
     if($enviado){
         header('location: contact.php?enviado=1');
     }else{
-        //header('location: contact.php?enviado=0');
+        header('location: contact.php?enviado=2');
     }
 ?>
