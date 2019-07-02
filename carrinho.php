@@ -1,10 +1,8 @@
 <html>
     <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>	
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </head>
     <body>
     <?php
@@ -35,7 +33,7 @@
 							<td><a href="index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continuar Comprando</a></td>\
 							<td colspan="2" class="hidden-xs"></td>\
 							<td class="hidden-xs text-center"><strong class="totalCarrinho"></strong></td>\
-							<td><a href="checkout.php" class="btn btn-success btn-block">Finalizar Compra<i class="fa fa-angle-right"></i></a></td>\
+							<td id="finalizar"><a href="#" class="btn btn-success btn-block">Finalizar Compra<i class="fa fa-angle-right"></i></a></td>\
 						</tr>\
 					</tfoot>\
 				</table>');
@@ -47,6 +45,7 @@
 		inputsQntd[i].addEventListener('change',alterarQntdProduto);
 		botaoRemover[i].addEventListener('click',removerProdutoCarrinho);
 	}
+	document.getElementById("finalizar").addEventListener('click',finalizarCompra);
 	function carregarCarrinho(){
 		var conteudoHTML= "";
 		for (var i = 0; i < localStorage.length; i++) {
@@ -130,7 +129,25 @@
 				document.getElementsByClassName("totalCarrinho")[i].innerHTML ='Total ' +valorTotalItem;
 			}	
 	}
-	
+	function finalizarCompra() {
+		var retorno = confirm("Deseja finalizar a compra?");
+		if (retorno == false) {
+		return;
+		}else {
+			alert("Compra finalizada. Você irá receber o recibo no seu email.");
+			pedido = localStorage['Itens'];
+			console.log(pedido);
+			jQuery.ajax({
+				type: "POST",
+				url: "http://localhost/LojaWebll/enviarRecibo.php",
+				data: {
+				pedidoCliente: pedido
+				},
+				dataType: "JSON"
+			})
+		localStorage.clear();
+			}
+	}
 	
 </script>
         <?php
