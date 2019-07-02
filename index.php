@@ -23,6 +23,7 @@
 ?>
 <!-- Page Content -->
   <div class="container">
+  <?php echo'Ol&aacute;, <Strong>' . $_SESSION['name'] . '</Strong>.';?>
     <form name="frmBusca" method="post" action="index.php?a=buscar<?php if ($categoria>0) {echo '&categoria='.$categoria;}?>" >
       <input type="text" class="form-control" name="texto" style="width: 84%; display: inline-block" placeholder="Pesquisar..."/>
       <button style="width: 15%; display: inline-block;" type="submit" class="btn btn-dark" value="Buscar">Buscar</button>
@@ -79,7 +80,7 @@
             echo 
             '<div class="col-lg-4 col-md-6 mb-4">
              <div class="card h-100">
-              <a href="produtoDetail.php?idProd=' . $row['id'] .'"><img class="card-img-top" src="./imagensProdutos/'. $row['id'] .'.jpg" alt="./imagensProdutos/'.$row['id'].'.png"></a>
+              <a href="produtoDetail.php?idProd=' . $row['id'] .'"><img class="card-img-top" style="height: 180px;" src="./imagensProdutos/'. $row['id'] .'.jpg" alt="./imagensProdutos/'.$row['id'].'.png"></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="produtoDetail.php?idProd=' . $row['id'] .'">' . $row['nome'] .'</a>

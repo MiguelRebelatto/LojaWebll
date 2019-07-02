@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['name'])){
-  echo 'Ol&aacute;, <Strong>' . $_SESSION['name'] . '</Strong>.';
+  $usuario = $_SESSION['name'];
 }else{
   header('location: login.php');
 }

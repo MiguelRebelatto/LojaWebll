@@ -3,8 +3,8 @@
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Page Content -->
-  <div class="container" style="height: 80%">
-  	<div class="card" style="margin-bottom: 20px;padding: 50px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <div class="container" style="height: 80%; margin-top: 30px;">
+  	<div class="card" style="margin-bottom: 30px;padding: 50px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 		<div class="">
 		<?php
 			if (@$_GET['enviado'] == 1){
