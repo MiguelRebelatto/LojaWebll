@@ -14,7 +14,7 @@
 ?>
 <!-- Page Content -->
   <div class="container">
-
+    <input type="text" id="search" placeholder="Pesquisar..." class="form-control">
     <div class="row">
 
       <div class="col-lg-3">
@@ -58,7 +58,7 @@
           </a>
         </div>
 <!-- Itens -->
-        <div class="row">
+        <div class="row" id="rowProd">
         <!-- Esse trexo pega os produtos no banco e lista eles na página -->
         <?php 
             while($row = mysqli_fetch_array($resultProdutos))
@@ -100,3 +100,35 @@
 <?php
   require_once("footer.php");
 ?>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+  		
+
+
+  		$("#search").keyup(function(event ){
+  			console.log($(this).val());
+  			$.ajax({
+			  type: "POST",
+			  url: 'http://localhost//TRAB/LojaWebll/buscaProdutos.php',
+			  data: { v: $(this).val()},
+			  success: function(data){
+
+			  	var json = JSON.parse(data);
+
+			 	var html = "";
+			  	for (var i = json.length - 1; i >= 0; i--) {
+			  		console.log(json[i]);
+			  		$('#rowProd').html("<div class=\"col-lg-4 col-md-6 mb-4\"><div class=\"card h-100\"><a href=\"produtoDetail.php?idProd=\""+json[i].id +"\"><img class=\"card-img-top\" src=\"http://placehold.it/700x400\" alt=\"\"></a><div class=\"card-body\"><h4 class=\"card-title\"><a href=\"produtoDetail.php?idProd=\"" + json[i].id +"\">" + json[i].nome +"</a></h4><h5>"+ json[i].nome + "</h5><p class=\"card-text\">" + $json[i].descricao+"</p><button id=\""+json[i].id +"\" type=\"button\" class=\"btn btn-primary botao\"><a style=\"color: white; text-decoration: none\" href=\"carrinho.php\">Adicionar ao Carrinho</a></button></div></div></div>");
+					
+			  	}
+          
+			  }
+			});
+  		});
+</script>
+
