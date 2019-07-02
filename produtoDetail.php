@@ -18,7 +18,7 @@
                     <?php echo $row['nome'] ?>
                 </h1>
 				<div class="col-md-6" style="display: inline-block;">
-                    <img src="https://radio93fm.com.br/wp-content/uploads/2019/02/produto.png" alt="imagem do produto" style="max-width: 90%">
+                    <img src="./imagensProdutos/<?php echo $row['id']?>.jpg" alt="imagem do produto" style="max-width: 90%">
                     <?php //echo $row['imagem'] ?>
                 </div>
 

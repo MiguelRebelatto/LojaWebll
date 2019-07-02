@@ -79,7 +79,7 @@
             echo 
             '<div class="col-lg-4 col-md-6 mb-4">
              <div class="card h-100">
-              <a href="produtoDetail.php?idProd=' . $row['id'] .'"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="produtoDetail.php?idProd=' . $row['id'] .'"><img class="card-img-top" src="./imagensProdutos/'. $row['id'] .'.jpg" alt="./imagensProdutos/'.$row['id'].'.png"></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="produtoDetail.php?idProd=' . $row['id'] .'">' . $row['nome'] .'</a>
