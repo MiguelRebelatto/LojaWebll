@@ -145,7 +145,8 @@
 				},
 				dataType: "JSON"
 			})
-		localStorage.clear();
+			localStorage.clear();
+			location.reload();
 			}
 	}
 	
