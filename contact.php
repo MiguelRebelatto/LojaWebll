@@ -11,7 +11,7 @@
 				echo '<div class="alert alert-success">Contato realizado com sucesso. Em breve, retornaremos!</div>';
 				}
 				if (@$_GET['enviado'] == 2){
-					echo '<div class="alert alert-success">Não foi possível enviar a mensagem!</div>';
+					echo '<div class="alert alert-warning>Não foi possível enviar a mensagem!</div>';
 				}
 			?>
 		<h4>Fale Conosco</h4>

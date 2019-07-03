@@ -1,5 +1,15 @@
-<div  style="text-align: center;">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cadastro - A&E</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+</head>
+<body>
+
+<div  style="text-align: center;">
+	<div class="card" style="margin: 5% 25% 5% 25%; height: 90%;width:50%; padding: 50px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+	
 <?php
 if (@$_GET['msgName']) {
     echo '<Strong>Nome já utilizado!</Strong>';
@@ -12,7 +22,7 @@ if (@$_GET['msgErro']) {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <form method="POST" name="formulario" onsubmit="return validar_email();" action="cadastrarUsuario.php">
-    <h2>Formul&aacute;rio de Cadastro</h2>
+    <h2>Cadastro</h2>
     <label>Nome:
     <input type="text" class="form-control" name="name" placeholder="Nome aqui..." required></label>
     <br>
@@ -22,8 +32,10 @@ if (@$_GET['msgErro']) {
     <label>Senha:
     <input type="password" class="form-control" name="password" placeholder="Senha aqui..." required></label>
     <br><br>
-    <input type="submit" class="btn btn-primary" value="Cadastrar" /> 
+    <input type="submit" class="btn btn-dark" value="Cadastrar" />
+    <br><br><a href="login.php" style="color: black; font-weight: bold">Voltar</a>
 </form>
+</div>
 <script>
 function validar_email(){
     var re = new RegExp("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}");
@@ -37,3 +49,5 @@ function validar_email(){
 }
 </script>
 </div>
+</body>
+</html>
