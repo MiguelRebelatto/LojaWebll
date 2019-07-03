@@ -17,7 +17,7 @@ if (@$_GET['notFound']) {
 	<form method="POST" action="validaUsuario.php">
 		<h2>A&E Store</h2>
 		<label>Login:
-		<input type="text" class="form-control" name="name" placeholder="Nome..." required></label>
+		<input type="text" class="form-control" name="name" placeholder="Login..." required></label>
 	  	<br>
 	  	<label>Senha:
 	  	<input class="form-control" type="Password" name="password" placeholder="Senha..." required></label>

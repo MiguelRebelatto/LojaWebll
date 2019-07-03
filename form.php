@@ -23,8 +23,8 @@ if (@$_GET['msgErro']) {
 
   <form method="POST" name="formulario" onsubmit="return validar_email();" action="cadastrarUsuario.php">
     <h2>Cadastro</h2>
-    <label>Nome:
-    <input type="text" class="form-control" name="name" placeholder="Nome aqui..." required></label>
+    <label>Login:
+    <input type="text" class="form-control" name="name" placeholder="Login aqui..." required></label>
     <br>
     <label>Email:
     <input type="text" class="form-control" name="email" placeholder="Email aqui..." required></label>
